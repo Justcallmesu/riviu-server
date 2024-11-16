@@ -1,3 +1,4 @@
+import { GlobalEntity } from '@/global.entity';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
@@ -12,7 +13,7 @@ export const databaseConfig = async (
     username: configService.get<string>('DB_USERNAME'),
     password: await configService.get<string>('DB_PASSWORD'),
     database: configService.get<string>('DB_DATABASE'),
-    entities: [],
+    entities: GlobalEntity,
     synchronize: configService.get<string>('DB_SYNCHRONIZE') === 'TRUE',
     namingStrategy: new SnakeNamingStrategy(),
     bigNumberStrings: false,

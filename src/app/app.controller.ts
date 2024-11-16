@@ -1,12 +1,13 @@
+import { ServerResponse } from '@/modules/common/model/response-model';
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  getHello(): ServerResponse {
+    return {
+      message: 'Server is Running 🚀',
+      status: 200,
+    };
   }
 }

@@ -5,13 +5,30 @@ import { config } from 'dotenv';
 // Env Package
 config({ path: '.env' });
 
+import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 async function bootstrap() {
-  console.log(process.env.DB_TYPE);
   const app = await NestFactory.create(AppModule);
 
-  app.use(cookieParser(process.env.cookie_secret as string));
+  app.enableCors({
+    origin: [
+      'http://localhost:5173',
+      'http://localhost:4173',
+      'http://localhost:5174',
+      'http://localhost:4174',
+    ],
+    credentials: true,
+  });
+
+  app.enableVersioning({
+    type: VersioningType.URI,
+    defaultVersion: '1',
+    prefix: 'api/v',
+  });
+
+  app.useGlobalPipes(new ValidationPipe());
+  app.use(cookieParser(process.env.COOKIE_SECRET as string));
 
   await app.listen(3000);
 }

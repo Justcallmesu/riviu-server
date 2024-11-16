@@ -1,9 +1,9 @@
 import { databaseConfig } from '@/config/database/orm.config';
+import { PublicModule } from '@/modules/public-module';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -18,8 +18,8 @@ import { AppService } from './app.service';
         configService: ConfigService,
       ): Promise<TypeOrmModuleOptions> => databaseConfig(configService),
     }),
+    PublicModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
