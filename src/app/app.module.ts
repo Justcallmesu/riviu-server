@@ -1,5 +1,6 @@
 import { databaseConfig } from '@/config/database/orm.config';
 import { PublicModule } from '@/modules/public-module';
+import { FilesModule } from '@/modules/services/files.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
@@ -19,6 +20,7 @@ import { AppController } from './app.controller';
       ): Promise<TypeOrmModuleOptions> => databaseConfig(configService),
     }),
     PublicModule,
+    FilesModule,
   ],
   controllers: [AppController],
 })
