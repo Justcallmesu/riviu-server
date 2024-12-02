@@ -1,20 +1,27 @@
+import { databaseConfig } from '@/config/database/orm.config';
+import { PublicModule } from '@/modules/public-module';
+import { FilesModule } from '@/modules/services/files.module';
 import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { MongooseModule } from '@nestjs/mongoose';
-import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: '.env',
+      isGlobal: true,
     }),
-    MongooseModule.forRoot(process.env.MONGODB_URL as string, {
-      dbName: process.env.MONGODB_DB as string,
-      appName: 'alfa-link-api',
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (
+        configService: ConfigService,
+      ): Promise<TypeOrmModuleOptions> => databaseConfig(configService),
     }),
+    PublicModule,
+    FilesModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
