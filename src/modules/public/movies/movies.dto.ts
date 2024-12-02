@@ -27,6 +27,10 @@ export class BaseMoviesDto {
   @IsNotEmpty()
   @IsNumber()
   rating: number;
+
+  @IsNotEmpty()
+  @IsString()
+  youtubeLink: string;
 }
 
 export class CreateMoviesDto extends BaseMoviesDto {}

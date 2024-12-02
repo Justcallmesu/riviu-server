@@ -1,12 +1,12 @@
-import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class BaseQuery {
   @IsOptional()
-  @IsNumber()
+  @IsString()
   limit = 10;
 
   @IsOptional()
-  @IsNumber()
+  @IsString()
   page = 1;
 
   @IsOptional()
