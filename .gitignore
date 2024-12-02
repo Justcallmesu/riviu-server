@@ -3,6 +3,8 @@
 /node_modules
 /build
 
+/files/*
+
 # Logs
 logs
 *.log
@@ -41,6 +43,7 @@ yarn.lock
 .env.test.local
 .env.production.local
 .env.local
+.env
 
 # temp directory
 .temp
