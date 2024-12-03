@@ -18,7 +18,7 @@ async function bootstrap() {
       'http://localhost:5174',
       'http://localhost:4174',
       'https://riviu-webapp-64lurst7k-justcallmesus-projects.vercel.app',
-      'https://riviu-webapp.vercel.app'
+      'https://riviu-webapp.vercel.app',
     ],
     credentials: true,
   });

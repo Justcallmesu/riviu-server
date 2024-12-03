@@ -1,7 +1,10 @@
-export function RefreshCookiesConfig() {
+import { CookieOptions } from 'express';
+
+export function RefreshCookiesConfig(): CookieOptions {
   return {
     secure: true,
-    httpOnly:true,
+    httpOnly: true,
+    sameSite: 'none',
     signed: true,
     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
   };
@@ -10,7 +13,8 @@ export function RefreshCookiesConfig() {
 export function AccessCookiesConfig() {
   return {
     secure: true,
-    httpOnly:true,
+    httpOnly: true,
+    sameSite: 'none',
     signed: true,
     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
   };
