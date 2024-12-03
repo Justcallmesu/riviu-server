@@ -10,7 +10,7 @@ export function RefreshCookiesConfig(): CookieOptions {
   };
 }
 
-export function AccessCookiesConfig() {
+export function AccessCookiesConfig(): CookieOptions {
   return {
     secure: true,
     httpOnly: true,

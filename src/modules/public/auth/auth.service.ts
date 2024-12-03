@@ -35,6 +35,7 @@ export class AuthService {
     ServerResponse<{
       username: string;
       name: string;
+      id: number;
     }>
   > {
     const foundUser = await this.userRepository.findOne({
@@ -65,6 +66,7 @@ export class AuthService {
       data: {
         name: foundUser.name,
         username: foundUser.username,
+        id: foundUser.id,
       },
       message: `Selamat datang kembali ${foundUser.name}`,
     };
